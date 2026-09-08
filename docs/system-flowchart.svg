@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1050" viewBox="0 0 1200 1050">
+  <title>基于 Arduino 的智能温湿度监测与风扇控制系统流程图</title>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L10,3 L0,6 Z" fill="#245b8a"/></marker>
+    <style>.title{font:700 28px sans-serif;fill:#17324d}.txt{font:600 18px sans-serif;fill:#17324d}.small{font:15px sans-serif;fill:#38556e}.start{fill:#dff3e5;stroke:#2f855a;stroke-width:2}.step{fill:#e9f5ff;stroke:#245b8a;stroke-width:2}.decision{fill:#fff4d6;stroke:#b7791f;stroke-width:2}.end{fill:#f3e8ff;stroke:#805ad5;stroke-width:2}.line{stroke:#245b8a;stroke-width:3;fill:none;marker-end:url(#arrow)}.branch{font:600 16px sans-serif;fill:#9b5c00}</style>
+  </defs>
+  <rect width="1200" height="1050" fill="#fff"/>
+  <text x="600" y="48" text-anchor="middle" class="title">基于 Arduino 的智能温湿度监测与风扇控制系统流程图</text>
+  <rect x="480" y="75" width="240" height="60" rx="30" class="start"/><text x="600" y="112" text-anchor="middle" class="txt">开始 / 系统上电</text>
+  <path d="M600 135 V165" class="line"/>
+  <rect x="405" y="165" width="390" height="75" rx="14" class="step"/><text x="600" y="197" text-anchor="middle" class="txt">初始化串口、引脚、DHT11</text><text x="600" y="222" text-anchor="middle" class="small">初始化 OLED，设置风扇为安全状态</text>
+  <path d="M600 240 V270" class="line"/>
+  <rect x="405" y="270" width="390" height="75" rx="14" class="step"/><text x="600" y="302" text-anchor="middle" class="txt">轮询蓝牙命令与页面按键</text><text x="600" y="327" text-anchor="middle" class="small">处理 STATUS、PAGE、FAN 等命令</text>
+  <path d="M600 345 V375" class="line"/>
+  <polygon points="600,375 775,445 600,515 425,445" class="decision"/><text x="600" y="440" text-anchor="middle" class="txt">到达 2 s 采样时间？</text><text x="600" y="466" text-anchor="middle" class="small">未到时间则继续轮询</text>
+  <path d="M425 445 H275 V930 H480" class="line"/><text x="350" y="430" class="branch">否</text>
+  <path d="M600 515 V550" class="line"/><text x="625" y="540" class="branch">是</text>
+  <rect x="405" y="550" width="390" height="75" rx="14" class="step"/><text x="600" y="582" text-anchor="middle" class="txt">读取温度与湿度</text><text x="600" y="607" text-anchor="middle" class="small">检查数值是否为有效范围</text>
+  <path d="M600 625 V655" class="line"/>
+  <polygon points="600,655 775,725 600,795 425,725" class="decision"/><text x="600" y="720" text-anchor="middle" class="txt">传感器数据有效？</text>
+  <path d="M425 725 H315 V930 H480" class="line"/><text x="365" y="710" class="branch">否：显示错误</text>
+  <path d="M600 795 V825" class="line"/><text x="625" y="815" class="branch">是</text>
+  <rect x="405" y="825" width="390" height="75" rx="14" class="step"/><text x="600" y="857" text-anchor="middle" class="txt">更新状态并刷新 OLED</text><text x="600" y="882" text-anchor="middle" class="small">判断 NORMAL / WARNING / CRITICAL</text>
+  <path d="M795 725 H920 V450" class="line"/><text x="825" y="710" class="branch">蜂鸣器、LED、风扇</text>
+  <rect x="820" y="320" width="250" height="100" rx="14" class="step"/><text x="945" y="355" text-anchor="middle" class="txt">更新输出</text><text x="945" y="382" text-anchor="middle" class="small">自动或手动风扇控制</text><text x="945" y="404" text-anchor="middle" class="small">严重报警时强制保留风扇</text>
+  <path d="M920 320 V210 H795" class="line"/>
+  <rect x="480" y="930" width="240" height="60" rx="30" class="end"/><text x="600" y="967" text-anchor="middle" class="txt">返回主循环</text>
+</svg>

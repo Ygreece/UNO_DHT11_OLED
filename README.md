@@ -69,7 +69,10 @@ UNO_DHT11_OLED/
 │   └── UNO_DHT11_Bluetooth_OLED.ino
 ├── Bluetooth_Test_old.txt   # 早期测试记录
 ├── README.md                # 项目说明与复现步骤
-└── docs/                    # 预留：课程设计报告、图片、流程图和实验记录
+├── docs/                    # 课程设计报告图表、实验记录和文档素材
+│   ├── system-block-diagram.svg # 系统总体框图
+│   ├── system-flowchart.svg     # 系统运行流程图
+│   └── README.md                # 报告资料组织说明
 ```
 
 建议后续 Word 汇报按以下章节整理：
