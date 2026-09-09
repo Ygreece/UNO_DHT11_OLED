@@ -104,7 +104,7 @@ void showHelpPage() {
   display.println(F("FAN AUTO/ON/OFF")); display.println(F("HELP")); display.display();
 }
 void refreshDisplay() {
-  if (!sensorValid) showReadError();
+  if (displayPage == 0 && !sensorValid) showReadError();
   else if (displayPage == 0) showSensorPage();
   else if (displayPage == 1) showControlPage();
   else showHelpPage();
